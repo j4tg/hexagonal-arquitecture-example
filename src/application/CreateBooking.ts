@@ -1,12 +1,17 @@
+import { inject, injectable } from "tsyringe";
 import { Booking } from "../domain/entities/Booking";
 import { Mailer } from "../domain/ports/Mailer";
 import { UniqueId } from "../domain/ports/UniqueId";
 import { BookingRepository } from "../domain/repositories/BookingRepository";
 
+@injectable()
 export class CreateBooking {
   constructor(
+    @inject("BookingRepository")
     private bookingRepository: BookingRepository,
+    @inject("UniqueId")
     private uniqueId: UniqueId,
+    @inject("Mailer")
     private mailer: Mailer
   ) {}
 

@@ -11,4 +11,5 @@ module.exports = {
   restoreMocks: true,
   transform: jsWithTs.transform,
   collectCoverageFrom: ["src/**"],
+  setupFiles: ['./tests/setup.js']
 };

@@ -1,9 +1,23 @@
 import express from "express";
+import bodyParser from "body-parser";
+import { CreateBooking } from "../../application/CreateBooking";
+import { DependencyContainer } from "tsyringe";
 
-const app = express();
+export function createApp(container: DependencyContainer) {
+  const app = express();
+  app.use(bodyParser.json());
 
-app.get("/", (_, res) => {
-  res.send("Arquitecture Hexagonal");
-});
+  app.get("/", (_, res) => {
+    res.send("Arquitecture Hexagonal");
+  });
 
-export { app };
+  app.post("/booking", async (req, res) => {
+    await container.resolve(CreateBooking).execute({
+      date: req.body.date,
+      email: req.body.email,
+    });
+    res.status(204).send();
+  });
+
+  return app;
+}

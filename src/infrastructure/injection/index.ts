@@ -1,4 +1,3 @@
-import "reflect-metadata";
 import { container } from "tsyringe";
 import { Mailer } from "../../domain/ports/Mailer";
 import { UniqueId } from "../../domain/ports/UniqueId";
